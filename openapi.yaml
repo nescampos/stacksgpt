@@ -1,0 +1,36 @@
+openapi: 3.0.1
+info:
+  title: Stacks Account Balance
+  description: Get the STX balance of a Stacks account.
+  version: 'v2'
+servers:
+  - url: https://stacksgpt.nescampos.repl.co
+paths:
+  /get_balance:
+    get:
+      operationId: getBalance
+      summary: Get the STX balance of a specific Stacks account
+      parameters:
+        - in: query
+          name: account_id
+          schema:
+            type: string
+          description: The address of the Stacks account
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getAccountBalanceResponse'
+components:
+  schemas:
+    getAccountBalanceResponse:
+      type: object
+      properties:
+        account:
+          type: string
+          description: The address of the Ethereum account.
+        balance:
+          type: number
+          description: The balance of the Ethereum account.
